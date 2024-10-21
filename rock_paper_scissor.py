@@ -1,5 +1,7 @@
 import random
 import os
+import pygame
+
 
 TITLE = "title.txt"
 
@@ -149,6 +151,24 @@ def playVsComputer(username, moves_list):
 
 
 def main():
+    
+    pygame.init()
+    # Set up the drawing window
+    screen = pygame.display.set_mode([800, 500])
+    
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        screen.fill((255,255,255))
+        pygame.draw.circle(screen, (0,0,255), (250,250), 75)
+        my_font = pygame.font.SysFont('JetBrainsMono MNF', 50)
+        text_surface = my_font.render('Rock Paper Scissor', False, (0, 0, 0))
+        screen.blit(text_surface, (0,0))
+        pygame.display.flip()
+    pygame.quit()
+    
     showTitle(TITLE)
     mode = choosePlayMode()
     
